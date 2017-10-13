@@ -1,5 +1,5 @@
 class Car < ActiveRecord::Base
 	belongs_to :user
-	has_many :maintenances, :through => :car_maintenances
+	has_many :maintenance_items, :through => :car_maintenance_items
  
 end
