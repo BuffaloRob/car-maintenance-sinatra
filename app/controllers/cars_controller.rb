@@ -18,7 +18,12 @@ class CarsController < ApplicationController
     end
 
     post '/cars' do
-    
+        if params[:car_name] == ""
+            redirect '/cars/new'
+        else
+            @car = current_user.cars.create(:name params[:car_name])
+            redirect "/cars/#{@car.id}"
+        end
     end
 
     get '/cars/:id' do
@@ -44,7 +49,14 @@ class CarsController < ApplicationController
     end
 
     patch '/cars/:id' do 
-
+        if params[:car_name] == ""
+            redirect "/cars/#{params[:id]}/edit"
+        else
+            @car = Car.find_by_id(params[:id])
+            @car.name = params[:car_name]
+            @car.save
+            redirect "/cars/#{@car.id}"
+        end
     end
 
     delete '/cars/:id/delete' do  
