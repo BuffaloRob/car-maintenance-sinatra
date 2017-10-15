@@ -26,7 +26,7 @@ class CarsController < ApplicationController
         end
     end
 
-    get '/cars/:id' do
+    get '/cars/:id' do # You might want to make this a slug route
         if logged_in?
             @car = Car.find_by_id(params[:id])
             erb :'/cars/show_car'
