@@ -1,0 +1,8 @@
+<h2>Edit Car</h2>
+
+<form action="/cars/<%=@car.id%>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="PATCH">
+    <input type="text" name="car_name" value="<%=@car.name%>">
+
+    <input type="submit" value="Edit Car">
+</form>
