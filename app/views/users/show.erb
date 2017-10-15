@@ -1,0 +1,9 @@
+<h2>Welcome, <%= @user.username %> </h2>
+
+<% @user.cars.each do |car| %>
+    <div>
+        <%= car.name %>
+    </div>
+<% end %>
+
+<p><a href="/logout">Log Out</a></p>
