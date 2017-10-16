@@ -1,0 +1,16 @@
+<h2>Edit Maintenance Item</h2>
+
+<form action="/maintenance_items/<%=@maintenance_item.id%>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="PATCH">
+
+    <input type="text" name="maintenance_name" value="<%=@maintenance_item.name%>"> <br/>
+
+    <input type="text" name="mileage_performed" value="<%=@maintenance_item.mileage_performed%>"> <br/>
+
+    <input type="text" name="mileage_due" value="<%=@maintenance_item.mileage_due%>"> <br/>
+
+    <input type="text" name="cost" value="<%=@maintenance_item.cost%>"> <br/>
+
+    <input type="submit" value="Edit Maintenance Item">
+
+</form>
