@@ -21,7 +21,7 @@ class MaintenanceItemsController < ApplicationController
         if params[:maintenance_name] == ""
             redirect '/maintenance_items/new'
         else
-            @maintenance_item = current_user.maintenance_item.create(:name params[:maintenance_name], :mileage_performed params[:mileage_performed], :mileage_due params[:mileage_due], :cost params[:cost])
+            @maintenance_item = current_user.maintenance_item.create(name: params[:maintenance_name], mileage_performed: params[:mileage_performed], mileage_due: params[:mileage_due], cost: params[:cost])
             redirect "/maintenance_items/#{@maintenance_item.id}"
         end
     end
