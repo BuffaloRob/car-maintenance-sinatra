@@ -21,7 +21,7 @@ class CarsController < ApplicationController
         if params[:car_name] == ""
             redirect '/cars/new'
         else
-            @car = current_user.cars.create(:name params[:car_name])
+            @car = current_user.cars.create(name: params[:car_name])
             redirect "/cars/#{@car.id}"
         end
     end
