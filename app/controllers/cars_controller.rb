@@ -1,5 +1,7 @@
 class CarsController < ApplicationController
-		
+
+# TODO:Make it so :slug will work on duplicate name
+
     get '/cars' do 
         if logged_in?
             @cars = Car.all
