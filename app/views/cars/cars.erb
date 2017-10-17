@@ -3,7 +3,7 @@
 
 <% @cars.each do |car| %>
     <div>
-        <%= car.name%>
+         <a href="/cars/<%= car.id %>"> <%= car.name %> </a>
     </div>
 <% end %>
 

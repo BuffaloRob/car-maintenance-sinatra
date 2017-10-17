@@ -2,6 +2,10 @@
 
 <% @car.maintenance_items.each do |maintenance_item| %>
     <div>
-        <%= maintenance_item.name %>
+        <a href="/cars/<%= maintenance_item.id %>"> <%= maintenance_item.name %> </a>
     </div>
 <% end %>
+
+<p><a href="/maintenance_items/new">Add a New Maintenance Item</a></p>
+
+<p><a href="/logout">Log Out</a></p>
