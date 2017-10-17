@@ -21,6 +21,8 @@ class MaintenanceItemsController < ApplicationController
         if params[:maintenance_name] == ""
             redirect '/maintenance_items/new'
         else
+            # binding.pry
+            #current_user.maintenance_items.create doesn't specify what car the maintenance belongs to, need to figure this out.
             @maintenance_item = current_user.maintenance_items.create(name: params[:maintenance_name], mileage_performed: params[:mileage_performed], mileage_due: params[:mileage_due], cost: params[:cost])
             redirect "/maintenance_items/#{@maintenance_item.id}"
         end
