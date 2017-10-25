@@ -4,7 +4,7 @@ class CarsController < ApplicationController
 
     get '/cars' do 
         if logged_in?
-            @cars = Car.all
+            @cars = current_user.cars
             erb :'/cars/cars'
         else
             redirect '/login'
