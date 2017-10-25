@@ -11,6 +11,7 @@ class MaintenanceItemsController < ApplicationController
 
     get '/maintenance_items/new' do  
         if logged_in?
+            @cars = current_user.cars
             erb :'/maintenance/create_maintenance_item'
         else
             redirect '/login'
