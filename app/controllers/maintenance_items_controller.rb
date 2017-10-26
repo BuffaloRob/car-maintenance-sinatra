@@ -24,12 +24,14 @@ class MaintenanceItemsController < ApplicationController
         else
             # binding.pry
             #current_user.maintenance_items.create doesn't specify what car the maintenance belongs to, need to figure this out.
-            @maintenance_item = current_user.maintenance_items.create(name: params[:maintenance_name], mileage_performed: params[:mileage_performed], mileage_due: params[:mileage_due], cost: params[:cost])
+            @car = Car.find_by_id(params[:car_id])
+            @maintenance_item = @car.maintenance_items.create(name: params[:maintenance_name], mileage_performed: params[:mileage_performed], mileage_due: params[:mileage_due], cost: params[:cost])
             redirect "/maintenance_items/#{@maintenance_item.id}"
         end
     end
 
     get '/maintenance_items/:id' do  #You might want to make this a slug route
+        # binding.pry
         if logged_in?
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
             erb :'/maintenance/show_maintenance_item'

@@ -1,11 +1,9 @@
-<h2>Maintenance Items</h2>
+<h2>Maintenance Item</h2>
 
-<% @maintenance_item.each do |maintenance_item| %>
-  <div>
-    <%= maintenance_item.name %>
-  </div>
-
-<% end %>
+<h3><%= @maintenance_item.name %></h3>
+<p>Performed at: <%= @maintenance_item.mileage_performed %></p>
+<p>Due: <%= @maintenance_item.mileage_due %></p>
+<p>Cost: $<%= @maintenance_item.cost %></p>
 
 <p><a href="/maintenance_items/<%= @maintenance_item.id %>/edit">Edit This Maintenance</a></p>
 

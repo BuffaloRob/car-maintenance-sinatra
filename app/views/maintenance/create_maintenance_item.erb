@@ -6,7 +6,8 @@
         <% @cars.all.each do |car| %>
         <option value="<%=car.id%>"><%=car.name%></option>
         <% end %>
-    </select> <br/>
+    </select> 
+    <br/>
 
     <label>Name:</label>
     <input type="text" name="maintenance_name" id="maintenance_name"> <br/>
@@ -17,7 +18,7 @@
     <label>Mileage Due:</label>
     <input type="text" name="mileage_due" id="mileage_due"> <br/>
 
-    <label>Cost:</label>
+    <label>Cost: $</label>
     <input type="text" name="cost" id="cost"> <br/>
 
     <input type="submit" value="Add Maintenance Item">
