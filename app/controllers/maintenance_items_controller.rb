@@ -22,8 +22,6 @@ class MaintenanceItemsController < ApplicationController
         if params[:maintenance_name] == ""
             redirect '/maintenance_items/new'
         else
-            # binding.pry
-            #current_user.maintenance_items.create doesn't specify what car the maintenance belongs to, need to figure this out.
             @car = Car.find_by_id(params[:car_id])
             @maintenance_item = @car.maintenance_items.create(name: params[:maintenance_name], mileage_performed: params[:mileage_performed], mileage_due: params[:mileage_due], cost: params[:cost])
             redirect "/maintenance_items/#{@maintenance_item.id}"
@@ -42,12 +40,15 @@ class MaintenanceItemsController < ApplicationController
 
     get '/maintenance_items/:id/edit' do
         if logged_in?
+            # binding.pry
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
-            if @maintenance_item.user_id == current_user.id 
-                erb :'/maintenance/edit_maintenance_item'
-            else
-                redirect '/maintenances_items'
-            end
+            erb :'/maintenance/edit_maintenance_item'
+            #### DO I NEED TO VALIDATE HERE???? Need to do it a different way, similar to the 'post "/maintenance_items"' route
+            # if @maintenance_item.user_id == current_user.id 
+            #     erb :'/maintenance/edit_maintenance_item'
+            # else
+            #     redirect '/maintenances_items'
+            # end
         else
             redirect '/login'
         end
