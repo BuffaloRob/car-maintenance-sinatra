@@ -2,7 +2,7 @@
 
 <% @maintenance_items.each do |maintenance_item| %>
     <div>
-        <%= maintenance_item.name %>
+       <a href="/maintenance_items/<%=maintenance_item.id%>"> <%= maintenance_item.name %> </a>
     </div>
 <% end %>
 
