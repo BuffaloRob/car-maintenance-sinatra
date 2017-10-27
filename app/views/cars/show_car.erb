@@ -3,7 +3,7 @@
 <h4>Maintenance Items</h4>
 <% @car.maintenance_items.each do |maintenance_item| %>
     <div>
-        <a href="/cars/<%= maintenance_item.id %>"> <%= maintenance_item.name %> </a>
+        <a href="/maintenance_items/<%= maintenance_item.id %>"> <%= maintenance_item.name %> </a>
     </div>
 <% end %>
 
