@@ -1,5 +1,5 @@
 TODO: 1) Change all '/:id' routes into slug routes
-2) Fix 'delete' route
+
 --------------------------------------------
 
 Useful lessons:
