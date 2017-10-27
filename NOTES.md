@@ -1,11 +1,4 @@
-user has many cars
-user has many maintenance items (through car)
-
-car belongs to user
-car has many maintenance items through car-maintenance
-
-maintenance has many cars through car-maintenance
-maintenance belongs to user (through cars)
+TODO: 1) Change all '/:id' routes into slug routes
 
 --------------------------------------------
 
