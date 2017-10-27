@@ -71,15 +71,18 @@ class MaintenanceItemsController < ApplicationController
     delete '/maintenance_items/:id/delete' do
         if logged_in?
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
-            if @maintenance_item.user_id == current_user.id 
-                @maintenance_item.delete
-                redirect '/maintenance_items'
-            else
-                redirect '/maintenance_items'
-            end
+            @maintenance_item.delete
+            redirect '/maintenance_items'
+            ####Same issue as line 46
+            # if @maintenance_item.user_id == current_user.id 
+            #     @maintenance_item.delete
+            #     redirect '/maintenance_items'
+            # else
+            #     redirect '/maintenance_items'
+            # end
         else
             redirect '/login'
         end
-    end
+    end 
     
 end
