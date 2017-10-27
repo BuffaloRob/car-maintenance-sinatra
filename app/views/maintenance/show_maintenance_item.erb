@@ -7,8 +7,11 @@
 
 <p><a href="/maintenance_items/<%= @maintenance_item.id %>/edit">Edit This Maintenance Item</a></p>
 
-<p><a href="/maintenance_items/<%= @maintenance_item.id %>/delete">Delete This Maintenance Item</a></p>
-
 <p><a href="/cars">View Cars</a></p>
 
 <p><a href="/logout">Log Out</a></p>
+
+<form action="/maintenance_items/<%= @maintenance_item.id %>/delete" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Maintenance Item">
+</form>
