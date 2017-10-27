@@ -41,6 +41,7 @@ class MaintenanceItemsController < ApplicationController
     get '/maintenance_items/:id/edit' do
         if logged_in?
             # binding.pry
+            @cars = current_user.cars
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
             erb :'/maintenance/edit_maintenance_item'
             #### DO I NEED TO VALIDATE HERE???? Need to do it a different way, similar to the 'post "/maintenance_items"' route
@@ -58,12 +59,18 @@ class MaintenanceItemsController < ApplicationController
         if params[:maintenance_name] == ""
             redirect "/maintenance_items/#{params[:id]}/edit"
         else
+            
+            @car = Car.find_by_id(params[:car_id])
+            #Need to change car.id to new id
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
             @maintenance_item.name = params[:maintenance_name]
             @maintenance_item.mileage_performed = params[:mileage_performed]
             @maintenance_item.mileage_due = params[:mileage_due]
             @maintenance_item.cost = params[:cost]
+            # @car.maintenance_items = @maintenance_item
+            # binding.pry
             @maintenance_item.save
+            @car.save
             redirect "/maintenance_items/#{@maintenance_item.id}"
         end
     end

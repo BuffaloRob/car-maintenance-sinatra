@@ -2,6 +2,13 @@
 
 <form action="/maintenance_items/<%=@maintenance_item.id%>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="PATCH">
+    <select name="car_id" >
+        <% @cars.all.each do |car| %>
+        <option value="<%=car.id%>"><%=car.name%></option>
+        <% end %>
+    </select> 
+    <br/>
+    
     <label>Name:</label>
     <input type="text" name="maintenance_name" value="<%=@maintenance_item.name%>"> <br/>
 
