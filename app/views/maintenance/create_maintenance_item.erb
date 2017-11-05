@@ -2,6 +2,7 @@
 
 <form action="/maintenance_items" method="POST">
     
+    <label>Choose Car: </label>
     <select name="car_id" >
         <% @cars.all.each do |car| %>
         <option value="<%=car.id%>"><%=car.name%></option>
