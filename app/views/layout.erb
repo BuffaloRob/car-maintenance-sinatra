@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   </head>
   <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li><a href="/cars/new">Add a New Car</a></li>
+                    <li><a href="/cars">View Cars</a></li>
+                    <li><a href="/maintenance_items/new">Add a New Maintenance Item</a></li>
+                    <li><a href="/maintenance_items">View All Maintenance Items</a></li>
+                    <li><a href="/car_maintenance_items/new">Schedule Maintenance</a></li>
+                    <li><a href="/logout">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <%= yield %>
   </body>
 
