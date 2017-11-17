@@ -1,0 +1,27 @@
+<h2>Add a New Maintenance Item</h2>
+
+<form action="/car_maintenance_items" method="POST">
+    
+    <label>Choose Car: </label>
+    <select name="car_id" >
+        <% @cars.all.each do |car| %>
+        <option value="<%=car.id%>"><%=car.name%></option>
+        <% end %>
+    </select> 
+    <br/>
+
+    <label>Name:</label>
+    <input type="text" name="maintenance_name" id="maintenance_name"> <br/>
+
+    <label>Mileage Performed:</label>
+    <input type="text" name="mileage_performed" id="mileage_performed"> <br/>
+
+    <label>Mileage Due:</label>
+    <input type="text" name="mileage_due" id="mileage_due"> <br/>
+
+    <label>Cost: $</label>
+    <input type="text" name="cost" id="cost"> <br/>
+
+    <input type="submit" value="Add Maintenance Item">
+
+</form>
