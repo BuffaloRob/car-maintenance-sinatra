@@ -21,3 +21,31 @@ Confirm
 - [ ] Your commit messages are meaningful
 - [ ] You made the changes in a commit that relate to the commit message
 - [ ] You don't include changes in a commit that aren't related to the commit message
+
+
+
+Maintenance Item 
+name: Oil Change
+
+Car A
+oil change for this car
+cost: $40
+mileage_due: 30000
+mileage_performed: 25000
+
+Car B
+oil change for this car
+cost: $50
+mileage_due: 20000
+mileage_performed: 15000
+
+in your car maintenance items controller
+you will protect your routes by checking to see if current_user.id == car_maintenance_item.car.user.id
+
+to schedule a maitenance, it will be a new form for car_maintenance_item, where you will select the car and the maintenance item
+inputs for this form
+car - dropdown
+maintenance item - dropdown
+mielage_due - input
+mileageperformed - input
+cost - input
