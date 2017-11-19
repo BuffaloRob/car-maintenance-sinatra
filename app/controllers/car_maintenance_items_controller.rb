@@ -1,9 +1,10 @@
 class CarMaintenanceItemsController < ApplicationController
 		
     get '/car_maintenance_items' do
+        # binding.pry
         if logged_in?
             @car_maintenance_items = CarMaintenanceItem.all
-            erb :'/maintenance/maintenance_items'
+            erb :'/car_maintenance/car_maintenance_items'
         else
             redirect '/login'
         end
@@ -12,7 +13,7 @@ class CarMaintenanceItemsController < ApplicationController
     get '/car_maintenance_items/new' do  
         if logged_in?
             @cars = current_user.cars
-            erb :'/maintenance/create_maintenance_item'
+            erb :'/car_maintenance/create_car_maintenance_item'
         else
             redirect '/login'
         end
@@ -32,7 +33,7 @@ class CarMaintenanceItemsController < ApplicationController
         # binding.pry
         if logged_in?
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
-            erb :'/maintenance/show_maintenance_item'
+            erb :'/car_maintenance/show_car_maintenance_item'
         else
             redirect '/login'
         end
@@ -43,7 +44,7 @@ class CarMaintenanceItemsController < ApplicationController
             # binding.pry
             @cars = current_user.cars
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
-            erb :'/maintenance/edit_maintenance_item'
+            erb :'/car_maintenance/edit_car_maintenance_item'
             #### DO I NEED TO VALIDATE HERE???? Need to do it a different way, similar to the 'post "/maintenance_items"' route
             # if @maintenance_item.user_id == current_user.id 
             #     erb :'/maintenance/edit_maintenance_item'
