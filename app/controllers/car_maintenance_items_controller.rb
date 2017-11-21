@@ -1,10 +1,10 @@
 class CarMaintenanceItemsController < ApplicationController
 		
     get '/car_maintenance_items' do
-        # binding.pry
+        binding.pry
         if logged_in?
             @car_maintenance_items = CarMaintenanceItem.all
-            erb :'/car_maintenance/car_maintenance_items'
+            erb :'/car_maintenance/car_maintenance_item'
         else
             redirect '/login'
         end
