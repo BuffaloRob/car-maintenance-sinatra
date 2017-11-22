@@ -8,4 +8,5 @@ use Rack::MethodOverride
 use CarsController
 use UsersController
 use MaintenanceItemsController
+use CarMaintenanceItemsController
 run ApplicationController
