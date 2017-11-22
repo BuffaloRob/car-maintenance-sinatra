@@ -10,8 +10,13 @@
     </select> 
     <br/>
 
-    <label>Name:</label>
-    <input type="text" name="maintenance_name" value="<%=@maintenance_item.name%>"> <br/>
+     <label>Choose the Maintenance:</label>
+      <select name="maintenance_id" >
+        <% @maintenance_items.all.each do |maintenance_item| %>
+        <option value="<%=maintenance_item.id%>"><%=maintenance_item.name%></option>
+        <% end %>
+    </select> 
+    <br/>
 
     <label>Mileage Performed:</label>    
     <input type="text" name="mileage_performed" value="<%=@car_maintenance_item.mileage_performed%>"> <br/>
