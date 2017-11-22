@@ -2,9 +2,10 @@
 
 <form action="/maintenance_items/<%=@maintenance_item.id%>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="PATCH">
+    <label>Car: </label>
     <select name="car_id" >
         <% @cars.all.each do |car| %>
-        <option value="<%=car.id%>"><%=car.name%></option>
+       <option value="<%=car.id%>"><%=car.name%></option>
         <% end %>
     </select> 
     <br/>
