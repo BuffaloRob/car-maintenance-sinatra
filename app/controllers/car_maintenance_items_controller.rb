@@ -1,9 +1,8 @@
 class CarMaintenanceItemsController < ApplicationController
 		
     get '/car_maintenance_items' do
-        binding.pry
         if logged_in?
-            @car_maintenance_items = CarMaintenanceItem.all
+            @maintenance_items = MaintenanceItem.all
             erb :'/car_maintenance/car_maintenance_item'
         else
             redirect '/login'
@@ -24,6 +23,8 @@ class CarMaintenanceItemsController < ApplicationController
             redirect '/car_maintenance_items/new'
         else
             @car = Car.find_by_id(params[:car_id])
+                    # binding.pry
+            @maintenance_item = @car.maintenance_items.create(name: params[:name])
             @car_maintenance_item = @car.car_maintenance_items.create(mileage_performed: params[:mileage_performed], mileage_due: params[:mileage_due], cost: params[:cost])
             redirect "/car_maintenance_items/#{@car_maintenance_item.id}"
         end
