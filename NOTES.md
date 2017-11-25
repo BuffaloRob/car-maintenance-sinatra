@@ -29,3 +29,5 @@ in the car_maint_controller:
 -> need to figure out what to use instead of params[:id], the @maintenance_item and @car_maintenance_item don't use the same :id
 try:
 @maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
+-----------------------
+having problems droping/resetting the DB
