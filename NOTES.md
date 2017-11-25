@@ -8,4 +8,16 @@ Useful lessons:
 1) Sinatra Complex forms associations
 2) Active record associations in sinatra
 3) Active record associations: Join tables
-4)
+
+
+------------------------------
+
+edit_car_maintenance_item 
+lines 13-18
+
+ <label>Choose the Maintenance:</label>
+      <select name="maintenance_id" >
+        <% @maintenance_items.all.each do |maintenance_item| %>
+        <option value="<%=maintenance_item.id%>"><%=maintenance_item.name%></option>
+        <% end %>
+      </select>
