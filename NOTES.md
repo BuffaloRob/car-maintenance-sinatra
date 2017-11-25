@@ -8,8 +8,6 @@ Useful lessons:
 1) Sinatra Complex forms associations
 2) Active record associations in sinatra
 3) Active record associations: Join tables
-
-
 ------------------------------
 
 edit_car_maintenance_item 
@@ -21,3 +19,13 @@ lines 13-18
         <option value="<%=maintenance_item.id%>"><%=maintenance_item.name%></option>
         <% end %>
       </select>
+------------------------------
+
+When I edit a scheduled maintenance it causes the maintenance_item.name to turn to 'nil'
+
+in the car_maint_controller:
+@maintenance_item = MaintenanceItem.find_by_id(params[:id]) 
+@car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
+-> need to figure out what to use instead of params[:id], the @maintenance_item and @car_maintenance_item don't use the same :id
+try:
+@maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
