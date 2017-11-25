@@ -13,7 +13,6 @@ class CarMaintenanceItemsController < ApplicationController
         if logged_in?
             @cars = current_user.cars
             @maintenance_items = MaintenanceItem.all
-            # binding.pry
             erb :'/car_maintenance/create_car_maintenance_item'
         else
             redirect '/login'
@@ -25,7 +24,6 @@ class CarMaintenanceItemsController < ApplicationController
             redirect '/car_maintenance_items/new'
         else
             @car = Car.find_by_id(params[:car_id])
-            # binding.pry
             # @maintenance_item = @car.maintenance_items.find_by_id(params[:maintenance_id])
             @car_maintenance_item = @car.car_maintenance_items.create(mileage_performed: params[:mileage_performed], mileage_due: params[:mileage_due], cost: params[:cost])
             redirect "/car_maintenance_items/#{@car_maintenance_item.id}"
@@ -33,7 +31,6 @@ class CarMaintenanceItemsController < ApplicationController
     end
 
     get '/car_maintenance_items/:id' do  #You might want to make this a slug route
-        # binding.pry
         if logged_in?
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
@@ -48,7 +45,7 @@ class CarMaintenanceItemsController < ApplicationController
         if logged_in?
             # binding.pry
             @cars = current_user.cars
-            @maintenance_items = MaintenanceItem.all
+            @maintenance_item = MaintenanceItem.find_by_id(params[:id])
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
             erb :'/car_maintenance/edit_car_maintenance_item'
             #### DO I NEED TO VALIDATE HERE???? Need to do it a different way, similar to the 'post "/maintenance_items"' route
