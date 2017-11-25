@@ -64,9 +64,9 @@ class MaintenanceItemsController < ApplicationController
             #Need to change car.id to new id
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
             @maintenance_item.name = params[:maintenance_name]
-            @maintenance_item.mileage_performed = params[:mileage_performed]
-            @maintenance_item.mileage_due = params[:mileage_due]
-            @maintenance_item.cost = params[:cost]
+            # @maintenance_item.mileage_performed = params[:mileage_performed]
+            # @maintenance_item.mileage_due = params[:mileage_due]
+            # @maintenance_item.cost = params[:cost]
             # @car.maintenance_items = @maintenance_item
             # binding.pry
             @maintenance_item.save
