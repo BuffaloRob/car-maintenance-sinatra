@@ -34,9 +34,8 @@ class CarMaintenanceItemsController < ApplicationController
         if logged_in?
             # @maintenance_item = MaintenanceItem.find_by_id(params[:id]) #can't use the same param as below
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
-            # @maintenance_id = @car_maintenance_item.maintenance_item_id
             @maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
-            binding.pry
+            # binding.pry
             erb :'/car_maintenance/show_car_maintenance_item'
         else
             redirect '/login'
