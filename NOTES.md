@@ -31,3 +31,6 @@ try:
 @maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
 -----------------------
 having problems droping/resetting the DB
+  FIX: delete 'development.sqlite' and run 'rake db:migrate'
+---------------------
+When i create a new maintenance_item it also creates a new car_maintenance_item
