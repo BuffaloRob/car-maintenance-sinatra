@@ -22,8 +22,8 @@ class MaintenanceItemsController < ApplicationController
         if params[:maintenance_name] == ""
             redirect '/maintenance_items/new'
         else
-            @car = Car.find_by_id(params[:car_id])
-            @maintenance_item = @car.maintenance_items.create(name: params[:maintenance_name])
+            # @car = Car.find_by_id(params[:car_id])
+            @maintenance_item = MaintenanceItem.create(name: params[:maintenance_name])
             redirect "/maintenance_items/#{@maintenance_item.id}"
         end
     end
