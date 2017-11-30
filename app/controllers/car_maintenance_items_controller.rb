@@ -45,8 +45,6 @@ class CarMaintenanceItemsController < ApplicationController
 
     get '/car_maintenance_items/:id/edit' do
         if logged_in?
-            # binding.pry
-            # @@maintenance = []
             @cars = current_user.cars
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
             @maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
@@ -72,7 +70,6 @@ class CarMaintenanceItemsController < ApplicationController
             @car_maintenance_item.mileage_due = params[:mileage_due]
             @car_maintenance_item.cost = params[:cost]
             @maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
-            # @car.maintenance_items = @maintenance_item
             # binding.pry
             @maintenance_item.save
             @car_maintenance_item.save
