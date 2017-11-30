@@ -1,5 +1,7 @@
 class CarMaintenanceItemsController < ApplicationController
-		
+
+    # @@maintenance = []	
+    
     get '/car_maintenance_items' do
         if logged_in?
             @maintenance_items = MaintenanceItem.all
@@ -31,8 +33,8 @@ class CarMaintenanceItemsController < ApplicationController
 
     get '/car_maintenance_items/:id' do  #You might want to make this a slug route
         if logged_in?
-            # @maintenance_item = MaintenanceItem.find_by_id(params[:id]) #can't use the same param as below
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
+            # @@maintenance << @car_maintenance_item
             @maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
             # binding.pry
             erb :'/car_maintenance/show_car_maintenance_item'
@@ -44,6 +46,7 @@ class CarMaintenanceItemsController < ApplicationController
     get '/car_maintenance_items/:id/edit' do
         if logged_in?
             # binding.pry
+            # @@maintenance = []
             @cars = current_user.cars
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
             @maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
