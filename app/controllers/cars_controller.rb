@@ -31,6 +31,10 @@ class CarsController < ApplicationController
     get '/cars/:id' do # You might want to make this a slug route
         if logged_in?
             @car = Car.find_by_id(params[:id])
+            @maint_item_ids = @car.maintenance_item_ids
+            #turn the id numbers (from @maint_item_ids) into the maintenance name
+            #make sure output is an array
+            #zip that array into the ...
             binding.pry
             erb :'/cars/show_car'
         else
