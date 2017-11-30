@@ -31,6 +31,8 @@ class CarsController < ApplicationController
     get '/cars/:id' do # You might want to make this a slug route
         if logged_in?
             @car = Car.find_by_id(params[:id])
+            binding.pry
+            
             erb :'/cars/show_car'
         else
             redirect '/login'
