@@ -32,7 +32,6 @@ class CarsController < ApplicationController
         if logged_in?
             @car = Car.find_by_id(params[:id])
             binding.pry
-            
             erb :'/cars/show_car'
         else
             redirect '/login'
