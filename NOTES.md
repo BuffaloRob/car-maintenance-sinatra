@@ -35,3 +35,13 @@ having problems droping/resetting the DB
 ---------------------
 When i create a new maintenance_item it also creates a new car_maintenance_item
   FIX: Changed when maintenance_item is related to a car, used to be when a new maintenance category(maintenance_item) was made, now it happens when maintenance is scheduled(car_maintenance_item).
+----------------------------------------------
+show_car_maintenance_item
+line 18 
+
+<% @@maintenance.each do |maintenance| %>
+    <%= maintenance.mileage_performed %>
+    <%= maintenance.mileage_due %>
+    <%= maintenance.cost %>
+<% end %>
+-------------------------------------------------
