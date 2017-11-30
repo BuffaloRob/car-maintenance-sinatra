@@ -48,13 +48,11 @@ class CarMaintenanceItemsController < ApplicationController
             @cars = current_user.cars
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
             @maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
-            erb :'/car_maintenance/edit_car_maintenance_item'
-            #### DO I NEED TO VALIDATE HERE???? Need to do it a different way, similar to the 'post "/maintenance_items"' route
-            # if @maintenance_item.user_id == current_user.id 
-            #     erb :'/maintenance/edit_maintenance_item'
-            # else
-            #     redirect '/maintenances_items'
-            # end
+            if current_user.id == @car_maintenance_item.car.user.id
+                erb :'/car_maintenance/edit_car_maintenance_item'
+            else
+                redirect '/car_maintenances_items'
+            end
         else
             redirect '/login'
         end
@@ -70,7 +68,6 @@ class CarMaintenanceItemsController < ApplicationController
             @car_maintenance_item.mileage_due = params[:mileage_due]
             @car_maintenance_item.cost = params[:cost]
             @maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
-            # binding.pry
             @maintenance_item.save
             @car_maintenance_item.save
             @car.save
@@ -80,18 +77,13 @@ class CarMaintenanceItemsController < ApplicationController
 
     delete '/car_maintenance_items/:id/delete' do
         if logged_in?
-            @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
-            # @maintenance_item = MaintenanceItem.find_by_id(params[:id])
-            # @maintenance_item.delete
-            @car_maintenance_item.delete
-            redirect '/car_maintenance_items'
-            ####Same issue as line 46
-            # if @maintenance_item.user_id == current_user.id 
-            #     @maintenance_item.delete
-            #     redirect '/maintenance_items'
-            # else
-            #     redirect '/maintenance_items'
-            # end
+            @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])     
+            if current_user.id == @car_maintenance_item.car.user.id
+                @car_maintenance_item.delete
+                redirect '/car_maintenance_items'
+            else
+                redirect '/car_maintenance_items'
+            end
         else
             redirect '/login'
         end
