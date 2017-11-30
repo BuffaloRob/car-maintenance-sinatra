@@ -19,6 +19,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id 
             redirect '/cars'
         else
+            flash[:message] = "That is not a valid user"
             redirect '/signup'
         end
     end
