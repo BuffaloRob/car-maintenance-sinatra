@@ -31,11 +31,21 @@ class CarsController < ApplicationController
     get '/cars/:id' do # You might want to make this a slug route
         if logged_in?
             @car = Car.find_by_id(params[:id])
+            @car_maint_items = []
+            #collect all car_maintenance_items
+            @car.car_maintenance_items.each do |car_maintenance_item|
+                @car_maint_items << car_maintenance_item
+            end
+            #gets maintenance_item_ids
             @maint_item_ids = @car.maintenance_item_ids
-            #turn the id numbers (from @maint_item_ids) into the maintenance name
-            #make sure output is an array
-            #zip that array into the ...
-            binding.pry
+            @maint_names = []
+            #turns maintenance_item_ids into maintenance names
+            @maint_item_ids.each do |maint_item_id|
+               @maint_names <<  MaintenanceItem.find_by_id(maint_item_id).name
+            end
+            #zip together car_maintenance_items and maintenance names
+            @maint_name_and_car_maint_item = @maint_names.zip(@car_maint_items)
+            # binding.pry
             erb :'/cars/show_car'
         else
             redirect '/login'
