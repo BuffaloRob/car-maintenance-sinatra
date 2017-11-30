@@ -2,9 +2,11 @@
 
 <h4>Scheduled Maintenance</h4>
 <% @car.car_maintenance_items.each do |car_maintenance_item| %>
-    <div>
-        <a href="/car_maintenance_items/<%= car_maintenance_item.id %>"> <%= car_maintenance_item.cost %> </a>
-    </div>
+    <% @car.maintenance_items.each do |maintenance_item| %>
+        <div>
+            <a href="/car_maintenance_items/<%= car_maintenance_item.id %>"> <%= maintenance_item.name %> </a>
+        </div>
+    <% end %>
 <% end %>
 
 <h4>Actions</h4>
