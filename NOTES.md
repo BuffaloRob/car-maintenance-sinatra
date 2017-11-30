@@ -34,3 +34,4 @@ having problems droping/resetting the DB
   FIX: delete 'development.sqlite' and run 'rake db:migrate'
 ---------------------
 When i create a new maintenance_item it also creates a new car_maintenance_item
+  FIX: Changed when maintenance_item is related to a car, used to be when a new maintenance category(maintenance_item) was made, now it happens when maintenance is scheduled(car_maintenance_item).
