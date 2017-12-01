@@ -14,8 +14,34 @@ class CarMaintenanceItemsController < ApplicationController
     get '/car_maintenance_items/new' do  
         if logged_in?
             @cars = current_user.cars
-            @maintenance_items = MaintenanceItem.all
+            @maint_item_ids = []
+            binding.pry
+            @cars.each do |maintenance_item_id|
+                @maint_item_ids << maintenance_item_id
+            end
+            @maint_names = []
+            @maint_item_ids.each do |maint_item_id|
+                @maint_names << MaintenanceItem.find_by_id(maint_item_id).name
+            end
+            # @maintenance_items = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
+            binding.pry
+            # @maintenance_items = MaintenanceItem.all
             erb :'/car_maintenance/create_car_maintenance_item'
+########################
+            # @car = Car.find_by_id(params[:id])
+            # @car_maint_items = []
+            # #collect all car_maintenance_items
+            # @car.car_maintenance_items.each do |car_maintenance_item|
+            #     @car_maint_items << car_maintenance_item
+            # end
+            # #gets maintenance_item_ids
+            # @maint_item_ids = @car.maintenance_item_ids
+            # @maint_names = []
+            # #turns maintenance_item_ids into maintenance names
+            # @maint_item_ids.each do |maint_item_id|
+            #    @maint_names <<  MaintenanceItem.find_by_id(maint_item_id).name
+            # end
+#########################
         else
             redirect '/login'
         end
