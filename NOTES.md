@@ -33,3 +33,12 @@ line 18
     <%= maintenance.cost %>
 <% end %>
 -------------------------------------------------------------------------------------------------------
+edit_maintenance_item
+line 5
+<label>Car: </label>
+    <select name="car_id" >
+        <% @cars.all.each do |car| %>
+       <option value="<%=car.id%>"><%=car.name%></option>
+        <% end %>
+    </select> 
+    <br/>
