@@ -41,8 +41,11 @@ class MaintenanceItemsController < ApplicationController
     get '/maintenance_items/:id/edit' do
         if logged_in?
             # binding.pry
-            @cars = current_user.cars
+            # @cars = current_user.cars
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
+            @car = @maintenance_item.cars
+            binding.pry
+            @car_maintenance_item = CarMaintenanceItem.find_by_id(@maintenance_item.)
             erb :'/maintenance/edit_maintenance_item'
             #### DO I NEED TO VALIDATE HERE???? Need to do it a different way, similar to the 'post "/maintenance_items"' route
             # if @maintenance_item.user_id == current_user.id 
