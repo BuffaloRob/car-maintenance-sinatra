@@ -20,28 +20,11 @@ class CarMaintenanceItemsController < ApplicationController
                 @car_maint_items << car.car_maintenance_items
             end
             @maint_items = []
+            #collect all the maintenance_items for use in the drop down to choose a maintenance category
             @car_maint_items.each do |maint_item_id|
                 @maint_items << MaintenanceItem.find_by_id(maint_item_id)
             end
-            # @maintenance_items = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
-            binding.pry
-            # @maintenance_items = MaintenanceItem.all
             erb :'/car_maintenance/create_car_maintenance_item'
-########################
-            # @car = Car.find_by_id(params[:id])
-            # @car_maint_items = []
-            # #collect all car_maintenance_items
-            # @car.car_maintenance_items.each do |car_maintenance_item|
-            #     @car_maint_items << car_maintenance_item
-            # end
-            # #gets maintenance_item_ids
-            # @maint_item_ids = @car.maintenance_item_ids
-            # @maint_names = []
-            # #turns maintenance_item_ids into maintenance names
-            # @maint_item_ids.each do |maint_item_id|
-            #    @maint_names <<  MaintenanceItem.find_by_id(maint_item_id).name
-            # end
-#########################
         else
             redirect '/login'
         end
