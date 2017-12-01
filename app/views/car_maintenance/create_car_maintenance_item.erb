@@ -12,7 +12,7 @@
 
     <label>Choose the Maintenance:</label>
       <select name="maintenance_id" >
-        <% @maintenance_items.all.each do |maintenance_item| %>
+        <% @maint_items.each do |maintenance_item| %>
         <option value="<%=maintenance_item.id%>"><%=maintenance_item.name%></option>
         <% end %>
     </select> 

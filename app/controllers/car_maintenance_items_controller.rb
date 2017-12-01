@@ -14,14 +14,14 @@ class CarMaintenanceItemsController < ApplicationController
     get '/car_maintenance_items/new' do  
         if logged_in?
             @cars = current_user.cars
-            @maint_item_ids = []
-            binding.pry
-            @cars.each do |maintenance_item_id|
-                @maint_item_ids << maintenance_item_id
+            @car_maint_items = []
+            #collect all car_maintenance_items
+            @cars.each do |car|
+                @car_maint_items << car.car_maintenance_items
             end
-            @maint_names = []
-            @maint_item_ids.each do |maint_item_id|
-                @maint_names << MaintenanceItem.find_by_id(maint_item_id).name
+            @maint_items = []
+            @car_maint_items.each do |maint_item_id|
+                @maint_items << MaintenanceItem.find_by_id(maint_item_id)
             end
             # @maintenance_items = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
             binding.pry
