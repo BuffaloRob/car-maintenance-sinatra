@@ -43,9 +43,11 @@ class MaintenanceItemsController < ApplicationController
             # binding.pry
             # @cars = current_user.cars
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
-            @car = @maintenance_item.cars
+            @cars = @maintenance_item.cars
+            @car_id = @cars.ids
+            @car = Car.find_by_id(@car_id)
             binding.pry
-            @car_maintenance_item = CarMaintenanceItem.find_by_id(@maintenance_item.)
+            @car_maintenance_item = CarMaintenanceItem.find_by_id(@maintenance_item)
             erb :'/maintenance/edit_maintenance_item'
             #### DO I NEED TO VALIDATE HERE???? Need to do it a different way, similar to the 'post "/maintenance_items"' route
             # if @maintenance_item.user_id == current_user.id 
