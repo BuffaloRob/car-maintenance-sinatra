@@ -15,7 +15,7 @@ class CarMaintenanceItemsController < ApplicationController
         if logged_in?
             @cars = current_user.cars
             @car_maint_items = []
-            #collect all car_maintenance_items
+            #collect all car_maintenance_items for current users cars
             @cars.each do |car|
                 @car_maint_items << car.car_maintenance_items
             end
