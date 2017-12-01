@@ -10,10 +10,18 @@ class CarMaintenanceItemsController < ApplicationController
             @cars.each do |car|
                 @car_maint_items << car.car_maintenance_items
             end
-            @maintenance_items = []
-            #collect all the maintenance_items for display/links
-            @car_maint_items.each do |maint_item_id|
-                @maintenance_items << MaintenanceItem.find_by_id(maint_item_id)
+
+            if @car_maint_items.any? {|i| i.empty?}
+                @maintenance_items = MaintenanceItem.all
+                erb :'/car_maintenance/car_maintenance_item'
+
+            else
+                @maintenance_items = []
+                #collect all the maintenance_items for display/links
+                @car_maint_items.each do |maint_item_id|
+                    @maintenance_items << MaintenanceItem.find_by_id(maint_item_id)
+                end
+     # binding.pry
             end
             erb :'/car_maintenance/car_maintenance_item'
         else
@@ -29,11 +37,18 @@ class CarMaintenanceItemsController < ApplicationController
             @cars.each do |car|
                 @car_maint_items << car.car_maintenance_items
             end
-            @maint_items = []
-            #collect all the maintenance_items for use in the drop down to choose a maintenance category
-            @car_maint_items.each do |maint_item_id|
-                @maint_items << MaintenanceItem.find_by_id(maint_item_id)
+
+            if @car_maint_items.any? {|i| i.empty?}
+                @maintenance_items = MaintenanceItem.all
+                erb :'/car_maintenance/car_maintenance_item'
+            else
+                @maint_items = []
+                #collect all the maintenance_items for use in the drop down to choose a maintenance category
+                @car_maint_items.each do |maint_item_id|
+                    @maint_items << MaintenanceItem.find_by_id(maint_item_id)
+                end
             end
+    #  binding.pry
             erb :'/car_maintenance/create_car_maintenance_item'
         else
             redirect '/login'
