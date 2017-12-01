@@ -61,7 +61,7 @@ class CarMaintenanceItemsController < ApplicationController
             if current_user.id == @car_maintenance_item.car.user.id
                 erb :'/car_maintenance/edit_car_maintenance_item'
             else
-                redirect '/car_maintenances_items'
+                redirect '/car_maintenance_items'
             end
         else
             redirect '/login'
