@@ -33,6 +33,7 @@ class CarMaintenanceItemsController < ApplicationController
 
     get '/car_maintenance_items/:id' do  #You might want to make this a slug route
         if logged_in?
+            @car = Car.find_by_id(params[:id])
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
             # @@maintenance << @car_maintenance_item
             @maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
@@ -68,9 +69,10 @@ class CarMaintenanceItemsController < ApplicationController
             @car_maintenance_item.mileage_due = params[:mileage_due]
             @car_maintenance_item.cost = params[:cost]
             @maintenance_item = MaintenanceItem.find_by_id(@car_maintenance_item.maintenance_item_id)
+            @car.save
             @maintenance_item.save
             @car_maintenance_item.save
-            @car.save
+            
             redirect "/car_maintenance_items/#{@car_maintenance_item.id}"
         end
     end
