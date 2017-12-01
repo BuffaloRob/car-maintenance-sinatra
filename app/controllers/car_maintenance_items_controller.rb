@@ -40,12 +40,12 @@ class CarMaintenanceItemsController < ApplicationController
 
             if @car_maint_items.any? {|i| i.empty?}
                 @maintenance_items = MaintenanceItem.all
-                erb :'/car_maintenance/car_maintenance_item'
+                erb :'/car_maintenance/create_car_maintenance_item'
             else
-                @maint_items = []
+                @maintenance_items = []
                 #collect all the maintenance_items for use in the drop down to choose a maintenance category
                 @car_maint_items.each do |maint_item_id|
-                    @maint_items << MaintenanceItem.find_by_id(maint_item_id)
+                    @maintenance_items << MaintenanceItem.find_by_id(maint_item_id)
                 end
             end
     #  binding.pry
