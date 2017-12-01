@@ -2,7 +2,6 @@ class MaintenanceItemsController < ApplicationController
 		
     get '/maintenance_items' do
         if logged_in?
-            # @maintenance_items = MaintenanceItem.all
             @cars = current_user.cars
             @car_maint_items = []
             #collect all car_maintenance_items for current users cars
@@ -33,14 +32,12 @@ class MaintenanceItemsController < ApplicationController
         if params[:maintenance_name] == ""
             redirect '/maintenance_items/new'
         else
-            # @car = Car.find_by_id(params[:car_id])
             @maintenance_item = MaintenanceItem.create(name: params[:maintenance_name])
             redirect "/maintenance_items/#{@maintenance_item.id}"
         end
     end
 
     get '/maintenance_items/:id' do  #You might want to make this a slug route
-        # binding.pry
         if logged_in?
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
             erb :'/maintenance/show_maintenance_item'
@@ -51,24 +48,17 @@ class MaintenanceItemsController < ApplicationController
 
     get '/maintenance_items/:id/edit' do
         if logged_in?
-            # binding.pry
-            # @cars = current_user.cars
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
             @cars = @maintenance_item.cars #produces array of cars
             @car_id = @cars.ids
             @car = Car.find_by_id(@car_id)
-            binding.pry
-            if current_user.id == @car.user_id
+            # binding.pry
+            ##### Need a more robust solution than the one below. if the maintenance item hasn't been scheduled for maintenance then there will NOT be a car associated with it, therefor @car.user_id causes an error
+            if @car == nil || current_user.id == @car.user_id 
                 erb :'/maintenance/edit_maintenance_item'
             else
                 redirect '/maintenance_items'
             end
-            #### DO I NEED TO VALIDATE HERE???? Need to do it a different way, similar to the 'post "/maintenance_items"' route
-            # if @maintenance_item.user_id == current_user.id 
-            #     erb :'/maintenance/edit_maintenance_item'
-            # else
-            #     redirect '/maintenances_items'
-            # end
         else
             redirect '/login'
         end
@@ -78,18 +68,9 @@ class MaintenanceItemsController < ApplicationController
         if params[:maintenance_name] == ""
             redirect "/maintenance_items/#{params[:id]}/edit"
         else
-            
-            @car = Car.find_by_id(params[:car_id])
-            #Need to change car.id to new id
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
             @maintenance_item.name = params[:maintenance_name]
-            # @maintenance_item.mileage_performed = params[:mileage_performed]
-            # @maintenance_item.mileage_due = params[:mileage_due]
-            # @maintenance_item.cost = params[:cost]
-            # @car.maintenance_items = @maintenance_item
-            # binding.pry
             @maintenance_item.save
-            @car.save
             redirect "/maintenance_items/#{@maintenance_item.id}"
         end
     end
