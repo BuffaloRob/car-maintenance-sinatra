@@ -4,7 +4,18 @@ class CarMaintenanceItemsController < ApplicationController
     
     get '/car_maintenance_items' do
         if logged_in?
-            @maintenance_items = MaintenanceItem.all
+            # @maintenance_items = MaintenanceItem.all
+             @cars = current_user.cars
+            @car_maint_items = []
+            #collect all car_maintenance_items for current users cars
+            @cars.each do |car|
+                @car_maint_items << car.car_maintenance_items
+            end
+            @maintenance_items = []
+            #collect all the maintenance_items for display/links
+            @car_maint_items.each do |maint_item_id|
+                @maintenance_items << MaintenanceItem.find_by_id(maint_item_id)
+            end
             erb :'/car_maintenance/car_maintenance_item'
         else
             redirect '/login'
