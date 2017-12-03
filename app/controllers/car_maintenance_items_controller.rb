@@ -38,7 +38,7 @@ class CarMaintenanceItemsController < ApplicationController
                 @car_maint_items << car.car_maintenance_items
             end
 
-            if @car_maint_items.any? {|i| i.empty?}
+            if @car_maint_items.all? {|i| i.empty?}
                 @maintenance_items = MaintenanceItem.all
                 erb :'/car_maintenance/create_car_maintenance_item'
             else
