@@ -10,9 +10,11 @@ class MaintenanceItemsController < ApplicationController
             end
             @maintenance_items = []
             #collect all the maintenance_items for view
-            @car_maint_items.each do |maint_item_id|
-                @maintenance_items << MaintenanceItem.find_by_id(maint_item_id)
+            ###currently using the id of the car_maint_item instead of the maintenance_item_id inside the car_maint_item object###
+            @car_maint_items.each do |maintenance_item_id|
+                @maintenance_items << MaintenanceItem.find_by_id(maintenance_item_id)
             end
+            binding.pry
             erb :'/maintenance/maintenance_items'
         else
             redirect '/login'
