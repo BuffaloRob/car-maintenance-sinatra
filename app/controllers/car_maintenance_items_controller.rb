@@ -44,12 +44,15 @@ class CarMaintenanceItemsController < ApplicationController
             else
                 @maintenance_items = []
                 #collect all the maintenance_items for use in the drop down to choose a maintenance category
-                ###currently using the id of the car_maint_item instead of the maintenance_item_id inside the car_maint_item object###
-                @car_maint_items.each do |maint_item_id|
-                    @maintenance_items << MaintenanceItem.find_by_id(maint_item_id)
+                @car_maint_items.each do |maint_item|
+                    maint_item.each do |maint_item_id|
+                        @maintenance_items << MaintenanceItem.find_by_id(maint_item_id.maintenance_item_id)
+                    end
+                    
+                ### Are the below values in the array considered key value pairs???
+                #[[#<CarMaintenanceItem:0x007fffd0f073f0 id: 6, maintenance_item_id: 9, car_id: 5, mileage_performed: 35000, mileage_due: 44000, cost: 15>]]
                 end
             end
-    #  binding.pry
             erb :'/car_maintenance/create_car_maintenance_item'
         else
             redirect '/login'
