@@ -19,7 +19,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id 
             redirect '/cars'
         else
-            flash[:message] = "That is not a valid user"
+            flash[:notice] = "That is not a valid user"
             redirect '/signup'
         end
     end
@@ -29,11 +29,13 @@ class UsersController < ApplicationController
             erb :'/users/create_user'
         else
             redirect '/cars'
+            flash[:notice] = "You're already signed in"
         end
     end
 
     post '/signup' do
         if params[:username] == "" || params[:email] == "" || params[:password] == ""
+            flash[:message] = "Don't leave any fields blank"
             redirect '/signup'
         else
             @user = User.create(username: params[:username], email: params[:email], password: params[:password])
