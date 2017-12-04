@@ -9,6 +9,7 @@ class UsersController < ApplicationController
         if !logged_in?
             erb :'/users/login'
         else
+            flash[:notice] = "You're already logged in"
             redirect '/cars'
         end
     end
@@ -28,14 +29,14 @@ class UsersController < ApplicationController
         if !logged_in?
             erb :'/users/create_user'
         else
+            flash[:notice] = "You're already signed up"
             redirect '/cars'
-            flash[:notice] = "You're already signed in"
         end
     end
 
     post '/signup' do
         if params[:username] == "" || params[:email] == "" || params[:password] == ""
-            flash[:message] = "Don't leave any fields blank"
+            flash[:notice] = "Don't leave any fields blank"
             redirect '/signup'
         else
             @user = User.create(username: params[:username], email: params[:email], password: params[:password])
@@ -51,6 +52,7 @@ class UsersController < ApplicationController
             session.destroy
             redirect '/login'
         else
+            flash[:notice] = "You're not logged in"
             redirect '/'
         end
     end
