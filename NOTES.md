@@ -47,3 +47,19 @@ line 5
         <% end %>
     </select> 
     <br/>
+-------------------------------------------------------------------------------------------------------
+maintenance_items_controller
+Line 6
+@car_maint_items = []
+            #collect all car_maintenance_items for current users cars
+            @cars.each do |car|
+                @car_maint_items << car.car_maintenance_items
+            end
+            @maintenance_items = []
+            #collect all the maintenance_items for view
+
+            @car_maint_items.each do |maint_item|
+                maint_item.each do |maint_item_id|
+                    @maintenance_items << MaintenanceItem.find_by_id(maint_item_id.maintenance_item_id)
+                end
+            end
