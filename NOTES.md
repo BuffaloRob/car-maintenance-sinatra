@@ -3,6 +3,7 @@ TODO: 1) Change all '/:id' routes into slug routes
 3) Make records persist and be linkable. i.e. if you click on oil change it will list the current maintenance but below it are a record of past maintenances performed and the date performed (need to add a date input on the forms and add a column through a migration of the db)
 4)When editing car_maintenance_item the car drop down works but if you change the car it doesn't change the record
 5) Get flash messages working
+6) Merge car_maintenance_item branch into master 
 -------------------------------------------------------------------------------------------------------
 Useful lessons:
 1) Sinatra Complex forms associations
