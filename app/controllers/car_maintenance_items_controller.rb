@@ -8,8 +8,6 @@ class CarMaintenanceItemsController < ApplicationController
             
             @user_id = @cars.first.user_id
 
-            # @maintenance_items = MaintenanceItem.all.find_by_id(@user_id)
-
             @maintenance_items = MaintenanceItem.all
             @user_maintenance_items = []
             @maintenance_items.each do |item|
@@ -28,8 +26,6 @@ class CarMaintenanceItemsController < ApplicationController
             @cars = current_user.cars
             
             @user_id = @cars.first.user_id
-
-            # @maintenance_items = MaintenanceItem.all.find_by_id(@user_id)
 
             @maintenance_items = MaintenanceItem.all
             @user_maintenance_items = []
