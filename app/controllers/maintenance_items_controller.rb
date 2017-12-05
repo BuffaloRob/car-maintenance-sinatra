@@ -3,9 +3,15 @@ class MaintenanceItemsController < ApplicationController
     get '/maintenance_items' do
         if logged_in?
             @cars = current_user.cars
-            @maintenance_items = []
-            @cars.each do |car|
-                @maintenance_items << car.maintenance_items
+            
+            @user_id = @cars.first.user_id
+
+            @maintenance_items = MaintenanceItem.all
+            @user_maintenance_items = []
+            @maintenance_items.each do |item|
+                if item.user_id == @user_id
+                    @user_maintenance_items << item
+                end
             end
             erb :'/maintenance/maintenance_items'
         else

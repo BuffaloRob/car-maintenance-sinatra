@@ -1,10 +1,8 @@
 <h2>Maintenance Items</h2>
 
-<% @maintenance_items.each do |maintenance_array| %>
-    <% maintenance_array.each do |maintenance_item| %>
+<% @user_maintenance_items.each do |maintenance_item| %>
     <div>
        <a href="/maintenance_items/<%=maintenance_item.id%>"> <%= maintenance_item.name %> </a>
     </div>
-    <% end %>
 <% end %>
 
