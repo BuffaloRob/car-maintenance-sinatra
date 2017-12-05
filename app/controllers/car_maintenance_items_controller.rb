@@ -4,7 +4,7 @@ class CarMaintenanceItemsController < ApplicationController
     
     get '/car_maintenance_items' do
         if logged_in?
-             @cars = current_user.cars
+            @cars = current_user.cars
             
             @user_id = @cars.first.user_id
 
