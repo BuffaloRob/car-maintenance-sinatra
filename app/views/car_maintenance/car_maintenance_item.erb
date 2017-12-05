@@ -1,6 +1,6 @@
 <h2>Maintenance Items</h2>
 
-<% @maintenance_items.each do |maintenance_item| %>
+<% @user_maintenance_items.each do |maintenance_item| %>
     <div>
        <a href="/car_maintenance_items/<%=maintenance_item.id%>"> <%= maintenance_item.name %> </a>
     </div>

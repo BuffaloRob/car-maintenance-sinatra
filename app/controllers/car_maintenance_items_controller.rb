@@ -4,24 +4,18 @@ class CarMaintenanceItemsController < ApplicationController
     
     get '/car_maintenance_items' do
         if logged_in?
-            @cars = current_user.cars
-            @car_maint_items = []
-            #collect all car_maintenance_items for current users cars
-            @cars.each do |car|
-                @car_maint_items << car.car_maintenance_items
-            end
+             @cars = current_user.cars
+            
+            @user_id = @cars.first.user_id
 
-            if @car_maint_items.any? {|i| i.empty?}
-                @maintenance_items = MaintenanceItem.all
-                erb :'/car_maintenance/car_maintenance_item'
+            # @maintenance_items = MaintenanceItem.all.find_by_id(@user_id)
 
-            else
-                @maintenance_items = []
-                #collect all the maintenance_items for display/links
-                @car_maint_items.each do |maint_item_id|
-                    @maintenance_items << MaintenanceItem.find_by_id(maint_item_id)
+            @maintenance_items = MaintenanceItem.all
+            @user_maintenance_items = []
+            @maintenance_items.each do |item|
+                if item.user_id == @user_id
+                    @user_maintenance_items << item
                 end
-     # binding.pry
             end
             erb :'/car_maintenance/car_maintenance_item'
         else
@@ -32,28 +26,19 @@ class CarMaintenanceItemsController < ApplicationController
     get '/car_maintenance_items/new' do  
         if logged_in?
             @cars = current_user.cars
-            # @maintenance_items =
-            # @car_maint_items = []
-            # #collect all car_maintenance_items for current users cars
-            # @cars.each do |car|
-            #     @car_maint_items << car.car_maintenance_items
-            # end
+            
+            @user_id = @cars.first.user_id
 
-            # if @car_maint_items.all? {|i| i.empty?}
-            #     @maintenance_items = MaintenanceItem.all
-            #     erb :'/car_maintenance/create_car_maintenance_item'
-            # else
-            #     @maintenance_items = []
-            #     #collect all the maintenance_items for use in the drop down to choose a maintenance category
-            #     @car_maint_items.each do |maint_item|
-            #         maint_item.each do |maint_item_id|
-            #             @maintenance_items << MaintenanceItem.find_by_id(maint_item_id.maintenance_item_id)
-            #         end
-                    
-                ### Are the below values in the array considered key value pairs???
-                #[[#<CarMaintenanceItem:0x007fffd0f073f0 id: 6, maintenance_item_id: 9, car_id: 5, mileage_performed: 35000, mileage_due: 44000, cost: 15>]]
-            #     end
-            # end
+            # @maintenance_items = MaintenanceItem.all.find_by_id(@user_id)
+
+            @maintenance_items = MaintenanceItem.all
+            @user_maintenance_items = []
+            @maintenance_items.each do |item|
+                if item.user_id == @user_id
+                    @user_maintenance_items << item
+                end
+            end
+
             erb :'/car_maintenance/create_car_maintenance_item'
         else
             redirect '/login'
