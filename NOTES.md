@@ -1,12 +1,5 @@
 TODO: 
-1)When editing car_maintenance_item the car drop down works but if you change the car it doesn't change the record
-2) Merge car_maintenance_item branch into master 
-3) Change sinatra-flash message background color
--------------------------------------------------------------------------------------------------------
-Nice to Have:
-1) Change all '/:id' routes into slug routes
-2) Make it so input values can use ',' Right now if I type 35,000 into the 'miles' portion it saves as 35
-3) Make records persist and be linkable. i.e. if you click on oil change it will list the current maintenance but below it are a record of past maintenances performed and the date performed (need to add a date input on the forms and add a column through a migration of the db)
+1) Fill in README
 -------------------------------------------------------------------------------------------------------
 Useful lessons:
 1) Sinatra Complex forms associations
