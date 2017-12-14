@@ -7,12 +7,13 @@
         </div>
 <% end %>
 
-<h4>Actions</h4>
+<% if @car.user == current_user %>
+    <h4>Actions</h4>
+    <p><a href="/cars/<%= @car.id %>/edit">Edit This Car</a></p>
 
-<p><a href="/cars/<%= @car.id %>/edit">Edit This Car</a></p>
-
-<form action="/cars/<%= @car.id %>/delete" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete Car">
-</form>
+    <form action="/cars/<%= @car.id %>/delete" method="POST">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete Car">
+    </form>
+<% end %>
 

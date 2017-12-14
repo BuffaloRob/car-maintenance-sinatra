@@ -5,14 +5,16 @@
 <p>Due: <%= @car_maintenance_item.mileage_due %></p>
 <p>Cost: $<%= @car_maintenance_item.cost %></p>
 
-<h4>Actions</h4>
-<p><a href="/car_maintenance_items/<%= @car_maintenance_item.id %>/edit">Edit This Maintenance Item</a></p>
+<% if @car.user_id == current_user.id %>
+    <h4>Actions</h4>
+    <p><a href="/car_maintenance_items/<%= @car_maintenance_item.id %>/edit">Edit This Maintenance Item</a></p>
 
-<form action="/car_maintenance_items/<%= @car_maintenance_item.id %>/delete" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete Maintenance Item">
-</form>
-</br>
+    <form action="/car_maintenance_items/<%= @car_maintenance_item.id %>/delete" method="POST">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete Maintenance Item">  
+    </form>
+    </br>
+<% end %>
 
 
 
