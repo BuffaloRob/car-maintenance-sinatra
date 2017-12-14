@@ -21,8 +21,12 @@ class CarsController < ApplicationController
         if params[:car_name] == ""
             redirect '/cars/new'
         else
-            @car = current_user.cars.create(name: params[:car_name])
-            redirect "/cars/#{@car.id}"
+            @car = current_user.cars.build(name: params[:car_name])
+            if @car.save
+                redirect "/cars/#{@car.id}"
+            else 
+                redirect '/cars/new'
+            end
         end
     end
 
@@ -53,7 +57,8 @@ class CarsController < ApplicationController
     get '/cars/:id/edit' do
         if logged_in?
             @car = Car.find_by_id(params[:id])
-            if @car.user_id == current_user.id 
+            ## This checks against nil also, makes it more robust, use in other areas like line 85
+            if @car && @car.user_id == current_user.id 
                 erb :'/cars/edit_car'
             else
                 redirect '/cars'
