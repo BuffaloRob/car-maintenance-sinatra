@@ -1,6 +1,4 @@
 class CarMaintenanceItemsController < ApplicationController
-
-    # @@maintenance = []	
     
     get '/car_maintenance_items' do
         if logged_in?

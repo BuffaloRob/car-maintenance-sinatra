@@ -1,7 +1,5 @@
 class CarsController < ApplicationController
 
-# TODO:Make it so :slug will work on duplicate name
-
     get '/cars' do 
         if logged_in?
             @cars = current_user.cars
@@ -28,7 +26,7 @@ class CarsController < ApplicationController
         end
     end
 
-    get '/cars/:id' do # You might want to make this a slug route
+    get '/cars/:id' do 
         if logged_in?
             @car = Car.find_by_id(params[:id])
             @car_maint_items = []
@@ -45,7 +43,7 @@ class CarsController < ApplicationController
             end
             #zip together car_maintenance_items and maintenance names
             @maint_name_and_car_maint_item = @maint_names.zip(@car_maint_items)
-            # binding.pry
+
             erb :'/cars/show_car'
         else
             redirect '/login'

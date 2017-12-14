@@ -37,7 +37,7 @@ class MaintenanceItemsController < ApplicationController
         end
     end
 
-    get '/maintenance_items/:id' do  #You might want to make this a slug route
+    get '/maintenance_items/:id' do  
         if logged_in?
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
             erb :'/maintenance/show_maintenance_item'
@@ -52,8 +52,7 @@ class MaintenanceItemsController < ApplicationController
             @cars = @maintenance_item.cars #produces array of cars
             @car_id = @cars.ids
             @car = Car.find_by_id(@car_id)
-            # binding.pry
-            ##### Need a more robust solution than the one below. if the maintenance item hasn't been scheduled for maintenance then there will NOT be a car associated with it, therefor @car.user_id causes an error
+
             if @car == nil || current_user.id == @car.user_id 
                 erb :'/maintenance/edit_maintenance_item'
             else
@@ -80,13 +79,6 @@ class MaintenanceItemsController < ApplicationController
             @maintenance_item = MaintenanceItem.find_by_id(params[:id])
             @maintenance_item.delete
             redirect '/maintenance_items'
-            ####Same issue as line 46
-            # if @maintenance_item.user_id == current_user.id 
-            #     @maintenance_item.delete
-            #     redirect '/maintenance_items'
-            # else
-            #     redirect '/maintenance_items'
-            # end
         else
             redirect '/login'
         end

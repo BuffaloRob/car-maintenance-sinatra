@@ -6,6 +6,7 @@
     <!-- "<%= url('/styles.css') %>" -->
   </head>
   <body>
+
     <nav class="navbar navbar-default navbar-fixed-top" id="nav">
         <div class="container-fluid" >
             <div class="navbar-header" >
@@ -19,13 +20,14 @@
             </div>
         </div>
     </nav>
+
     <% flash.keys.each do |type| %>
-  <div data-alert class="flash <%= type %> alert-box radius">
-    <h4><%= flash[type] %></h4>
-    <a href="#" class="close">&times;</a>
-  </div>
-<% end %>
+      <div data-alert class="flash <%= type %> alert-box radius">
+        <h4><%= flash[type] %></h4>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
-
 </html>
