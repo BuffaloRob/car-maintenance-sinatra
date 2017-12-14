@@ -40,8 +40,13 @@ class CarMaintenanceItemsController < ApplicationController
     end
 
     post '/car_maintenance_items' do  
-        if params[:maintenance_name] == ""
+        if params[:mileage_performed] == "" || params[:mileage_due] == "" || params[:cost] == ""
+            flash[:notice] = "Please fill in all fields"
             redirect '/car_maintenance_items/new'
+        # elsif
+        #     params[:mileage_performed] == /\D/ || params[:mileage_due] == /\D/ || params[:cost] = /\D/
+        #     flash[:notice] = "Numbers only please"
+        #     redirect "/car_maintenance_items/#{params[:id]}/edit"
         else
             @car = Car.find_by_id(params[:car_id])
             @car_maintenance_item = @car.car_maintenance_items.create(mileage_performed: params[:mileage_performed], mileage_due: params[:mileage_due], cost: params[:cost], maintenance_item_id: params[:maintenance_id])
@@ -49,7 +54,7 @@ class CarMaintenanceItemsController < ApplicationController
         end
     end
 
-    get '/car_maintenance_items/:id' do  #You might want to make this a slug route
+    get '/car_maintenance_items/:id' do 
         if logged_in?
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
             # @@maintenance << @car_maintenance_item
@@ -78,8 +83,13 @@ class CarMaintenanceItemsController < ApplicationController
     end
 
     patch '/car_maintenance_items/:id' do
-        if params[:maintenance_name] == ""
+        if params[:mileage_performed] == "" || params[:mileage_due] == "" || params[:cost] == ""
+            flash[:notice] = "Please fill in all fields"
             redirect "/car_maintenance_items/#{params[:id]}/edit"
+        # elsif
+        #     params[:mileage_performed] == /\D/ || params[:mileage_due] == /\D/ || params[:cost] = /\D/
+        #     flash[:notice] = "Numbers only please"
+        #     redirect "/car_maintenance_items/#{params[:id]}/edit"
         else
             @car = Car.find_by_id(params[:car_id])
             @car_maintenance_item = CarMaintenanceItem.find_by_id(params[:id])
